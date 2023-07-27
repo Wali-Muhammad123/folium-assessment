@@ -1,0 +1,26 @@
+version: '3'
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    command:
+      redis-server --bind 0.0.0.0
+  warehouse:
+    build:
+      context: ./Warehousemicroservice
+    ports:
+      - "8001:8000"
+
+  sales:
+    build:
+      context: ./Salesmicroservice
+    ports:
+      - "8000:8000"
+
+  accounting:
+    build:
+      context: ./Accountingmicroservice
+    ports:
+      - "8002:8000"
